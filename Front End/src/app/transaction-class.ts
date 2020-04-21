@@ -3,6 +3,6 @@ export class TransactionClass {
     sender:number;
     receiver:number;
     Amount:number;
-    date:Date
+    time:Date;
 
 }
