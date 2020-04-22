@@ -15,4 +15,12 @@ export class TransactionServiceService {
     let url="http://localhost:1137/list";
     return this.http.get(url);
   }
+
+  createNewTransaction(transRef:TransactionClass):Observable<any>
+  {
+    let url="http://localhost:1137/addTransaction";
+    return this.http.post(url,transRef,{responseType:'text'});
+
+
+  }
 }

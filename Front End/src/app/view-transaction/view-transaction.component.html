@@ -22,6 +22,11 @@
     </table>
 </div>
 
-<div *ngIf="transactionData.length==0">
-Opps!! No Transaction History
+<div *ngIf="errorVarForData" class="loading">
+  Opps!! No Transaction History
+  <div class="loading1">Pay Payment to Make Many</div>
+</div>
+
+<div *ngIf="loading" class="loading">
+  Loading ...
 </div>

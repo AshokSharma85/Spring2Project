@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TransactionServiceService } from '../transaction-service.service';
+import { TransactionClass } from '../transaction-class';
 
 @Component({
   selector: 'app-add-transaction',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddTransactionComponent implements OnInit {
 
-  constructor() { }
+  constructor( private refOfTransactionService:TransactionServiceService ) { }
+
+  objOfTranaction:TransactionClass=new TransactionClass();
 
   ngOnInit(): void {
   }
 
+  addTransaction():void
+  {
+  this.refOfTransactionService.createNewTransaction(this.objOfTranaction).subscribe(data=>
+  {
+    alert("Transaction Done");
+  },
+  error=>
+  {
+    console.log("erroor occured",error);
+  }
+);
+  }
 }
