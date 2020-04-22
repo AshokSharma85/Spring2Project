@@ -23,6 +23,8 @@ public class WalletController {
  * add data me account nahi aa raha hai
  * fetch karte time account column nahi aa rhi hai
  * sender ke through data kese fetch kare 
+ * kese id se value fetch kru 
+ * account id vala refernce nahi pta
 	
 */	@Autowired
 	WalletServiceI ws;
@@ -33,15 +35,12 @@ public class WalletController {
 		return ws.retrive();
 	}
 	
-	@PostMapping(value="/new",consumes= {"application/json"})
-	public String add(@RequestBody Transaction t,@RequestBody Account a )
+	@PostMapping(value="/addTransaction",consumes= {"application/json"})
+	public String add(@RequestBody Transaction t )
 	{
-		t.setTime(new Date());
+		//ws.findById(id) ye vali id kese lau
 		ws.add(t);
-		System.out.println(t.getAc().getAccountId());
-		
-		return "Transaction Added"+t.getAc().getAccountId();
-		
+		return "Transaction Added";		
 	}
 	
 	@GetMapping(value="/find/{id}")

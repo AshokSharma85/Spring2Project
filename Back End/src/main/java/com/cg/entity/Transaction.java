@@ -1,22 +1,24 @@
 package com.cg.entity;
 
-
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="trans2")
+@SequenceGenerator(name="seq", initialValue=144444444)
 public class Transaction {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
 	private int transactionid;
 	
 	@Column
@@ -26,10 +28,10 @@ public class Transaction {
 	private int receiver;
 	
 	@Column
-	private double Amount;
+	private double amount;
 	
 	@Column
-	private Date time;
+	private String time;
 	
 
 	@JsonBackReference
@@ -38,18 +40,13 @@ public class Transaction {
 	private Account ac;
 	
 	
-	
-	
-	
 
-
-
-	public Transaction(int transactionid, int sender, int receiver, double amount, Date time, Account ac) {
+	public Transaction(int transactionid, int sender, int receiver, double amount, String time, Account ac) {
 		super();
 		this.transactionid = transactionid;
 		this.sender = sender;
 		this.receiver = receiver;
-		Amount = amount;
+		this.amount = amount;
 		this.time = time;
 		this.ac = ac;
 	}
@@ -74,11 +71,11 @@ public class Transaction {
 		this.transactionid = transactionid;
 	}
 
-	public Date getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(Date time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 
@@ -110,13 +107,13 @@ public class Transaction {
 
 
 	public double getAmount() {
-		return Amount;
+		return amount;
 	}
 
 
 
 	public void setAmount(double amount) {
-		Amount = amount;
+		this.amount = amount;
 	}
 
 
