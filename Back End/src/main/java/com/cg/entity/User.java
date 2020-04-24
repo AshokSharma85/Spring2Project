@@ -5,12 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Repository;
+
 @Entity
-@Table(name="user2")
+@Table(name="sprint_user_table")
+@Repository
 public class User {
 
 	@Id
-	private String userid;
+	private int userid;
 	
 	@Column
 	private String username;
@@ -18,7 +21,7 @@ public class User {
 	@Column
 	private String password;
 
-	public User(String userid, String username, String password) {
+	public User(int userid, String username, String password) {
 		super();
 		this.userid = userid;
 		this.username = username;
@@ -29,11 +32,11 @@ public class User {
 		super();
 	}
 
-	public String getUserid() {
+	public int getUserid() {
 		return userid;
 	}
 
-	public void setUserid(String userid) {
+	public void setUserid(int userid) {
 		this.userid = userid;
 	}
 

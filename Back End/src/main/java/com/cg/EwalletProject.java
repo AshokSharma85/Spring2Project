@@ -14,12 +14,12 @@ import com.cg.entity.Account;
 import com.cg.entity.Transaction;
 
 @SpringBootApplication
-public class Sprint2SirApplication  implements CommandLineRunner{
+public class EwalletProject  implements CommandLineRunner{
 
 	@Autowired
 	WalletDaoI acc;
 	public static void main(String[] args) {
-		SpringApplication.run(Sprint2SirApplication.class, args);
+		SpringApplication.run(EwalletProject.class, args);
 	}
 
 	@Override

@@ -13,13 +13,13 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-@Table(name="trans2")
+@Table(name="sprint_transaction_table")
 @SequenceGenerator(name="seq", initialValue=144444444)
 public class Transaction {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
-	private int transactionid;
+	private int transactionId;
 	
 	@Column
 	private int sender;
@@ -37,13 +37,17 @@ public class Transaction {
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="account_id")
-	private Account ac;
+	private Account ac=new Account();
 	
 	
 
-	public Transaction(int transactionid, int sender, int receiver, double amount, String time, Account ac) {
+
+	
+
+
+	public Transaction(int transactionId, int sender, int receiver, double amount, String time, Account ac) {
 		super();
-		this.transactionid = transactionid;
+		this.transactionId = transactionId;
 		this.sender = sender;
 		this.receiver = receiver;
 		this.amount = amount;
@@ -51,7 +55,7 @@ public class Transaction {
 		this.ac = ac;
 	}
 
-	
+
 
 
 	public Transaction() {
@@ -60,16 +64,19 @@ public class Transaction {
 
 
 
-
-	public int getTransactionid() {
-		return transactionid;
+	public int getTransactionId() {
+		return transactionId;
 	}
 
-	
-	
-	public void setTransactionid(int transactionid) {
-		this.transactionid = transactionid;
+
+
+
+	public void setTransactionId(int transactionId) {
+		this.transactionId = transactionId;
 	}
+
+
+
 
 	public String getTime() {
 		return time;

@@ -3,6 +3,7 @@ package com.cg.entity;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -15,71 +16,108 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
-@Table(name="account2")
+@Table(name="sprint_account_table")
 public class Account {
 
 	@Id
+	@Column(name="account_id")
 	private int accountId;
 	
 	@OneToOne
-	@JoinColumn
-	private User userofbank;
+	@JoinColumn(name="User_id")
+	private User userId;
 	
-	private int walletbalance;
+	@Column(name="wallet_balance")
+	private double walletBalance;
 	
 	@JsonManagedReference
 	@OneToMany(targetEntity = Transaction.class,mappedBy ="ac" ,fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Transaction> transaction;
 	
 	
+
 	
-	public int getAccountId() {
-		return accountId;
-	}
-
-	public void setAccountId(int accountId) {
-		this.accountId = accountId;
-	}
-
-	public int getWalletbalance() {
-		return walletbalance;
-	}
-
-	public void setWalletbalance(int walletbalance) {
-		this.walletbalance = walletbalance;
-	}
-
-	public Set<Transaction> getTransaction() {
-		return transaction;
-	}
-
-	public void setTransaction(Set<Transaction> transaction) {
-		this.transaction = transaction;
-	}
-
-	public Account(int accountId, int walletbalance, Set<Transaction> transaction) {
-		super();
-		this.accountId = accountId;
-		this.walletbalance = walletbalance;
-		this.transaction = transaction;
-	}
 
 	public Account() {
 		super();
 	}
 
-	public User getUserofbank() {
-		return userofbank;
+
+
+
+
+	public Account(int accountId, User userId, double walletBalance, Set<Transaction> transaction) {
+		super();
+		this.accountId = accountId;
+		this.userId = userId;
+		this.walletBalance = walletBalance;
+		this.transaction = transaction;
 	}
 
-	public void setUserofbank(User userofbank) {
-		this.userofbank = userofbank;
+
+
+
+
+	public int getAccountId() {
+		return accountId;
 	}
 
-	
-	
-	
-	
+
+
+
+
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
+	}
+
+
+
+
+
+	public User getUserId() {
+		return userId;
+	}
+
+
+
+
+
+	public void setUserId(User userId) {
+		this.userId = userId;
+	}
+
+
+
+
+
+	public double getWalletBalance() {
+		return walletBalance;
+	}
+
+
+
+
+
+	public void setWalletBalance(double walletBalance) {
+		this.walletBalance = walletBalance;
+	}
+
+
+
+
+
+	public Set<Transaction> getTransaction() {
+		return transaction;
+	}
+
+
+
+
+
+	public void setTransaction(Set<Transaction> transaction) {
+		this.transaction = transaction;
+	}
+
 	
 	
 	
