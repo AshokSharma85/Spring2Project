@@ -19,14 +19,8 @@ import com.cg.service.WalletServiceI;
 @CrossOrigin
 @RestController
 public class WalletController {
-/*
- * add data me account nahi aa raha hai
- * fetch karte time account column nahi aa rhi hai
- * sender ke through data kese fetch kare 
- * kese id se value fetch kru 
- * account id vala refernce nahi pta
 	
-*/	@Autowired
+	@Autowired
 	WalletServiceI ws;
 	
 	@GetMapping(value="/list")
@@ -45,9 +39,7 @@ public class WalletController {
 	
 	@GetMapping(value="/find/{id}")
 	public List fetchTransaction(@PathVariable int id)
-	{
-		//System.out.println(ws.findById(id).getAc().getUserofbank().getUsername());
-		
+	{		
 		return ws.findById(id);
 	}
 }

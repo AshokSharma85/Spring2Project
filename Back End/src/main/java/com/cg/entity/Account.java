@@ -118,6 +118,21 @@ public class Account {
 		this.transaction = transaction;
 	}
 
+
+
+
+
+	@Override
+	public String toString() {
+		return "Account [accountId=" + accountId + ", walletBalance=" + walletBalance + "]";
+	}
+
+
+
+
+
+	
+
 	
 	
 	

@@ -16,7 +16,7 @@ public interface WalletDaoI {
 
 	public void create(Account acc);
 	public List retrive();
-	public void add(Transaction t);
+	public void add(Transaction t,double walletBalanceOfAccount);
 	public List findById(int id);
 	
 }

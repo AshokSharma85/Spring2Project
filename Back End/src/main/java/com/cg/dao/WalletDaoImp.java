@@ -37,8 +37,8 @@ public class WalletDaoImp implements WalletDaoI
 	public List retrive() {
 
 		int id=1001;
-		// where s.sender="+id
-		Query q=em.createQuery("from Transaction s");
+		
+		Query q=em.createQuery("from Transaction s where s.sender="+id);
 		
 		return q.getResultList();
 		
@@ -46,7 +46,7 @@ public class WalletDaoImp implements WalletDaoI
 	}
 
 	@Override
-	public void add(Transaction t) {
+	public void add(Transaction t,double walletBalanceOfAccount) {
 		Date dNow = new Date( );
 	    
 		//To set date in specific format
@@ -59,24 +59,14 @@ public class WalletDaoImp implements WalletDaoI
 		Query q1=em.createQuery(" select a.accountId from Account a where a.userId="+1002);
         List l=q1.getResultList();
 		t.getAc().setAccountId((int)l.get(0));
-		//System.out.println(em.find(Account.class, 2));
 		
-		/*Query q2=em.createQuery("select a.walletbalance from Account a where a.userofbank="+2);
+		Query q2=em.createQuery("select a.walletBalance from Account a where a.userId="+1002);
         List l1=q2.getResultList();
         double walletBalance=((double)l1.get(0))-t.getAmount();
-        System.out.println(walletBalance);
-        t.getAc().setWalletbalance(walletBalance);
-        System.out.println(t.getAc().getTransaction());*/
        
-        
-        
-       /* Query q3=em.createQuery("update Account a set a.walletbalance="+walletBalance+"where a.userofbank="+2);
-        System.out.println(q3.toString());
-        */
-        
-        //em.persist(q3);
-       // em.persist("update Account a set u.walletBalance="+walletBalance);
-        
+        Query q3=em.createQuery("UPDATE Account a SET a.walletBalance =" +walletBalance+"WHERE a.userId="+1002);
+        q3.executeUpdate();
+      
 		em.persist(t);
 		
 	}
@@ -84,20 +74,14 @@ public class WalletDaoImp implements WalletDaoI
 	@Override
 	public List findById(int id) {
 
-		Query q=em.createQuery("from Transaction s where s.sender="+id);  
+		System.out.println(em.find(Account.class, 2));
 		
-		/*Account a=em.find(Account.class,150);
-		if(a==null)
-		{
-			System.out.println("NoT valid");
-		}
-		else
-		{
-			System.out.println("Present");
-		}
-		JPa Inbuild FUnctions
-		*/
-		System.out.println("Data are"+em.find(Account.class, 2));
+		Query q=em.createQuery("from Transaction s where s.sender="+id);  
+
+		Query query = em.createQuery("FROM Account a where a.userId="+1002);
+	      List<Account> resultList = query.getResultList();
+	      System.out.println(resultList.get(0));
+	      resultList.forEach(System.out::println);
 		return q.getResultList();
 	}
 	
