@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionServiceService } from '../transaction-service.service';
 import { TransactionClass } from '../transaction-class';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-transaction',
@@ -16,14 +17,18 @@ export class AddTransactionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addTransaction():void
+  addTransaction(form :NgForm):void
   {
   this.refOfTransactionService.createNewTransaction(this.objOfTranaction).subscribe(data=>
   {
+    form.resetForm();
     alert("Transaction Done");
+  
   },
   error=>
   {
+    //Json.parse function convert string into object to work with
+    alert(JSON.parse(error.error).message);
     console.log("erroor occured",error);
   }
 );
