@@ -14,52 +14,54 @@ import com.cg.dao.WalletDaoI;
 import com.cg.entity.Account;
 import com.cg.entity.Transaction;
 import com.cg.entity.User;
+import com.cg.exception.WalletServiceException;
 
 @Transactional
 @Service
 public class WalletServiceImp implements WalletServiceI {
 
 	@Autowired
-	WalletDaoI wd;
+	WalletDaoI ObjectOfWalletDaoI;
 	
 	@PersistenceContext
-	EntityManager em;
+	EntityManager objectOfEntityManager;
+	
 	
 	@Override
-	public void create(Account ac) {
-		wd.create(ac);	
+	public List retriveTransaction() {
+		return ObjectOfWalletDaoI.retriveTransaction();
 	}
 
+	
 	@Override
-	public List retrive() {
-		return wd.retrive();
-	}
-
-	@Override
-	public void add(Transaction t) {
-		Query q2=em.createQuery("select a.walletBalance from Account a where a.userId="+1002);
-        List l1=q2.getResultList();
+	public void addTransaction(Transaction refOfTransaction) throws WalletServiceException {
+		Query query=objectOfEntityManager.createQuery("select a.walletBalance from Account a where a.userId="+1002);
+        List list=query.getResultList();
         
-		if(em.find(User.class, 1002)==null)
+		if(objectOfEntityManager.find(User.class, 1002)==null)
 			{
-			  System.out.println("User Id is not valid");
+			   throw new WalletServiceException("User Id is not valid"); 
 			}
-		else if((double)l1.get(0)>t.getAmount()) 
-		{
-	       double walletBalance=((double)l1.get(0))-t.getAmount();
-	       wd.add(t,walletBalance);
-	    }
+		
+		else if((double)list.get(0)<refOfTransaction.getAmount()) 
+			{
+				throw new WalletServiceException("Insufficient Balance in your wallet to Transfer"); 
+			}
+		
+		else if(refOfTransaction.getAmount()<=0)
+			{
+			throw new WalletServiceException("Amount should be more than Zero"); 
+	
+			}
+		
 		else
 		{
-			System.out.println("Insufficient Balance in your wallet to Transfer");
+			double walletBalanceOfAccount=((double)list.get(0))-refOfTransaction.getAmount();
+			ObjectOfWalletDaoI.addTransaction(refOfTransaction, walletBalanceOfAccount);
+
 		}
 		
 			
-	}
-
-	@Override
-	public List findById(int id) {
-		return wd.findById(id);
 	}
 
 	

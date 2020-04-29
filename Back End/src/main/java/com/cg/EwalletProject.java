@@ -16,8 +16,6 @@ import com.cg.entity.Transaction;
 @SpringBootApplication
 public class EwalletProject  implements CommandLineRunner{
 
-	@Autowired
-	WalletDaoI acc;
 	public static void main(String[] args) {
 		SpringApplication.run(EwalletProject.class, args);
 	}

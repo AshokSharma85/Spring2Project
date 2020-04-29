@@ -23,6 +23,10 @@ public class Account {
 	@Column(name="account_id")
 	private int accountId;
 	
+	/*@Id
+	@Column(name="wallet_id")
+	private int walletId;*/
+	
 	@OneToOne
 	@JoinColumn(name="User_id")
 	private User userId;

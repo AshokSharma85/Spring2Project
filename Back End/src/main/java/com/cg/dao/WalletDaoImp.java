@@ -24,19 +24,11 @@ public class WalletDaoImp implements WalletDaoI
 	@PersistenceContext
 	EntityManager em;
 	
-	@Autowired
-	User u;
-	
-	@Override
-	public void create(Account acc) {
-		
-		em.persist(acc);
-	}
 
 	@Override
-	public List retrive() {
+	public List retriveTransaction() {
 
-		int id=1001;
+		int id=1011;
 		
 		Query q=em.createQuery("from Transaction s where s.sender="+id);
 		
@@ -46,7 +38,7 @@ public class WalletDaoImp implements WalletDaoI
 	}
 
 	@Override
-	public void add(Transaction t,double walletBalanceOfAccount) {
+	public void addTransaction(Transaction t,double walletBalanceOfAccount) {
 		Date dNow = new Date( );
 	    
 		//To set date in specific format
@@ -56,34 +48,22 @@ public class WalletDaoImp implements WalletDaoI
 		
 		t.setSender(1011);
 		
-		Query q1=em.createQuery(" select a.accountId from Account a where a.userId="+1002);
-        List l=q1.getResultList();
+		Query query1=em.createQuery(" select a.accountId from Account a where a.userId="+1002);
+        List l=query1.getResultList();
 		t.getAc().setAccountId((int)l.get(0));
 		
-		Query q2=em.createQuery("select a.walletBalance from Account a where a.userId="+1002);
-        List l1=q2.getResultList();
-        double walletBalance=((double)l1.get(0))-t.getAmount();
        
-        Query q3=em.createQuery("UPDATE Account a SET a.walletBalance =" +walletBalance+"WHERE a.userId="+1002);
-        q3.executeUpdate();
+        Query query2=em.createQuery("UPDATE Account a SET a.walletBalance =" +walletBalanceOfAccount+"WHERE a.userId="+1002);
+        query2.executeUpdate();
+        
+        Query query3=em.createQuery("UPDATE Account a SET a.walletBalance =" +walletBalanceOfAccount+"WHERE a.userId="+t.getReceiver());
+        query2.executeUpdate();
       
 		em.persist(t);
 		
 	}
 	
-	@Override
-	public List findById(int id) {
 
-		System.out.println(em.find(Account.class, 2));
-		
-		Query q=em.createQuery("from Transaction s where s.sender="+id);  
-
-		Query query = em.createQuery("FROM Account a where a.userId="+1002);
-	      List<Account> resultList = query.getResultList();
-	      System.out.println(resultList.get(0));
-	      resultList.forEach(System.out::println);
-		return q.getResultList();
-	}
 	
 	
 	

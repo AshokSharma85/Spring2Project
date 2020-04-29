@@ -14,11 +14,11 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="sprint_transaction_table")
-@SequenceGenerator(name="seq", initialValue=144444444)
+@SequenceGenerator(name="transactionIdGenerator", initialValue=144444444)
 public class Transaction {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="transactionIdGenerator")
 	private int transactionId;
 	
 	@Column
