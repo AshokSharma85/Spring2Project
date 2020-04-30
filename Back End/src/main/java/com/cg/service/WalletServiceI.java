@@ -8,7 +8,7 @@ import com.cg.exception.WalletServiceException;
 
 public interface WalletServiceI {
 
-	public List retriveTransaction();
+	public List retrieveTransaction();
 	public void addTransaction(Transaction t) throws WalletServiceException;
 
 	

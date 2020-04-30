@@ -19,18 +19,22 @@ public class WalletController {
 	
 	@Autowired
 	WalletServiceI objOfWalletServiceI;
-	
-	@GetMapping(value="/list")
+	/*
+	 * This method will return the transaction history  of user
+	 */
+	@GetMapping(value="/viewTransactionHistory")
 	public List<Transaction> fetchTransactionDetail()
 	{
-		return objOfWalletServiceI.retriveTransaction();
+		return objOfWalletServiceI.retrieveTransaction();
 	}
 	
+	/*
+	 * This method will add the transaction into transaction table if user enter all correct data
+	 */
 	@PostMapping(value="/addTransaction",consumes= {"application/json"})
-	public String add(@RequestBody Transaction refOfTransaction ) throws WalletServiceException
+	public void add(@RequestBody Transaction refOfTransaction ) throws WalletServiceException
 	{
 		objOfWalletServiceI.addTransaction(refOfTransaction);
-		return "Transaction Added";		
 	}
 
 }
