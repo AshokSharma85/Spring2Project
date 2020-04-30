@@ -7,12 +7,16 @@ import { AddTransactionComponent } from './add-transaction/add-transaction.compo
 import { ViewTransactionComponent } from './view-transaction/view-transaction.component';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ViewCreditedBalanceHistoryComponent } from './view-transaction/view-credited-balance-history/view-credited-balance-history.component';
+import { ViewDebitedBalanceHistoryComponent } from './view-transaction/view-debited-balance-history/view-debited-balance-history.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddTransactionComponent,
-    ViewTransactionComponent
+    ViewTransactionComponent,
+    ViewCreditedBalanceHistoryComponent,
+    ViewDebitedBalanceHistoryComponent
   ],
   imports: [
     BrowserModule,

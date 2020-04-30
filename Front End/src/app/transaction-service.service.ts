@@ -12,7 +12,7 @@ export class TransactionServiceService {
   constructor(private http:HttpClient) { }
   loadTransaction():Observable<any>
   {
-    let url="http://localhost:1137/list";
+    let url="http://localhost:1137/viewTransactionHistory";
     return this.http.get(url);
   }
 
