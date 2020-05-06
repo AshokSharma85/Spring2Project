@@ -29,12 +29,14 @@ public class WalletServiceImp implements WalletServiceI {
 	 * This method will call the DAO class to get the transaction history 
 	 */
 	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public List retrieveTransaction() {
 		return walletDaoI.retrieveTransaction();
 	}
 
 	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void addTransaction(Transaction transaction) throws WalletServiceException {
 		

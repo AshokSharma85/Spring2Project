@@ -22,6 +22,7 @@ public class WalletController {
 	/*
 	 * This method will return the transaction history  of user
 	 */
+	@SuppressWarnings("unchecked")
 	@GetMapping(value="/viewTransactionHistory")
 	public List<Transaction> fetchTransactionDetail()
 	{
@@ -34,7 +35,6 @@ public class WalletController {
 	@PostMapping(value="/addTransaction",consumes= {"application/json"})
 	public void add(@RequestBody Transaction transaction ) throws WalletServiceException
 	{
-		//System.out.println(transaction.toString());
 		walletServiceI.addTransaction(transaction);
 	}
 

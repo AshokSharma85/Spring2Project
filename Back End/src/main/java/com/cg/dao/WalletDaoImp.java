@@ -24,6 +24,7 @@ public class WalletDaoImp implements WalletDaoI
 	 *This method will retrieve data from transaction table of logged in user 	 
 	 */
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public List retrieveTransaction() {
 
@@ -40,6 +41,7 @@ public class WalletDaoImp implements WalletDaoI
 
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void addTransaction(Transaction transaction,double walletBalanceOfAccount) {
 		

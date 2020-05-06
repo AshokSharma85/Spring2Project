@@ -8,8 +8,9 @@ import com.cg.entity.Transaction;
 @Repository
 public interface WalletDaoI {
 
+	@SuppressWarnings("rawtypes")
 	public List retrieveTransaction();
-	public void addTransaction(Transaction t,double walletBalanceOfAccount);
+	public void addTransaction(Transaction transaction,double walletBalanceOfAccount);
 	
 }
 

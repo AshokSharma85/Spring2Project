@@ -13,8 +13,8 @@ public class WalletControllerAdvice {
 
 	@ExceptionHandler(value= {WalletServiceException.class})
 	@ResponseStatus(code=HttpStatus.BAD_REQUEST)
-	public WalletErrorMessage  handelWalletServiceException(WalletServiceException ex) {
-		return new WalletErrorMessage(ex.getMessage());
+	public WalletErrorMessage  handelWalletServiceException(WalletServiceException exception) {
+		return new WalletErrorMessage(exception.getMessage());
 	}
 
 }
