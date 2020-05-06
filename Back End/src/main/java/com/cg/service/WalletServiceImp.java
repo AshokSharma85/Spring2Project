@@ -37,8 +37,8 @@ public class WalletServiceImp implements WalletServiceI {
 	
 	@SuppressWarnings("rawtypes")
 	@Override
-	public List retrieveTransaction() {
-		return walletDaoI.retrieveTransaction();
+	public List retrieveTransaction(Long loggedInIdForTransactionHistory) {
+		return walletDaoI.retrieveTransaction(loggedInIdForTransactionHistory);
 	}
 
 	/***********************************************************************************************************************
@@ -55,7 +55,7 @@ public class WalletServiceImp implements WalletServiceI {
 	@Override
 	public void addTransaction(Transaction transaction) throws WalletServiceException {
 		
-		Query query=entityManager.createQuery("select walletBalance from Wallet  where walletId="+8504930595L);
+		Query query=entityManager.createQuery("select walletBalance from Wallet  where walletId="+transaction.getSender());
         List list=query.getResultList();
         
         /**************************************************************************
@@ -72,7 +72,7 @@ public class WalletServiceImp implements WalletServiceI {
 		 * This will check if user is not trying to send money to himself/herself.
 		 *******************************************************************************/
 		
-		else if(transaction.getReceiver().equals((8504930595L)))
+		else if(transaction.getReceiver().equals(transaction.getSender()))
 		{
 			throw new WalletServiceException("Please Enter Correct Mobile Number");
 		}

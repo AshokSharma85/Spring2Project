@@ -8,7 +8,7 @@ import com.cg.exception.WalletServiceException;
 public interface WalletServiceI {
 
 	@SuppressWarnings("rawtypes")
-	public List retrieveTransaction();
+	public List retrieveTransaction(Long loggedInIdForTransactionHistory);
 	public void addTransaction(Transaction transaction) throws WalletServiceException;
 
 	

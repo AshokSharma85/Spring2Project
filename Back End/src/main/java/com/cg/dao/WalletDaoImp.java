@@ -31,22 +31,18 @@ public class WalletDaoImp implements WalletDaoI
 	 */
 	@SuppressWarnings("rawtypes")
 	@Override
-	public List retrieveTransaction() {
-
-		
+	public List retrieveTransaction(Long loggedInIdForTransactionHistory) {
 		
 		/********************************************************************************
 		 * This Query will return the transaction history from transaction table
 		 **********************************************************************************/
 		
-		Query query=entityManager.createQuery("from Transaction where sender="+8504930595L);
+		Query query=entityManager.createQuery("from Transaction where sender="+loggedInIdForTransactionHistory);
 		
 		return query.getResultList();
-		
 
 	}
 
-	
 	/***********************************************************************************************************************
 	 * Method: addTransaction
 	 * Description: This method will update and set the required data to the table in database
@@ -76,20 +72,20 @@ public class WalletDaoImp implements WalletDaoI
 	     ****************************************************************************************************************/
 	    
 	   
-	    transaction.setSender(8504930595L);
+	    transaction.setSender(transaction.getSender());
 	    
 		
 	    /****************************************************************************************************************
 	     * This will set the wallet Id of sender which we can set in transaction table 
 	     ******************************************************************************************************/
 		
-        transaction.getWallet().setWalletId(8504930595L);
+        transaction.getWallet().setWalletId(transaction.getSender());
 		
        /*********************************************************************************************************
         * from this query we will update the wallet balance of sender's Id 
         *******************************************************************************************************/
         
-        Query query1=entityManager.createQuery("UPDATE Wallet SET walletBalance =" +walletBalanceOfWallet+"WHERE walletId="+8504930595L);
+        Query query1=entityManager.createQuery("UPDATE Wallet SET walletBalance =" +walletBalanceOfWallet+"WHERE walletId="+transaction.getSender());
         query1.executeUpdate();
         
         

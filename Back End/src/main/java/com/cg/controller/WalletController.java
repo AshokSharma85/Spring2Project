@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,10 +24,10 @@ public class WalletController {
 	 * This method will return the transaction history  of user
 	 */
 	@SuppressWarnings("unchecked")
-	@GetMapping(value="/viewTransactionHistory")
-	public List<Transaction> fetchTransactionDetail()
+	@GetMapping(value="/viewTransactionHistory/{loggedInId}")
+	public List<Transaction> fetchTransactionDetail(@PathVariable Long loggedInId)
 	{
-		return walletServiceI.retrieveTransaction();
+		return walletServiceI.retrieveTransaction(loggedInId);
 	}
 	
 	/*

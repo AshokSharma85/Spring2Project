@@ -9,7 +9,7 @@ import com.cg.entity.Transaction;
 public interface WalletDaoI {
 
 	@SuppressWarnings("rawtypes")
-	public List retrieveTransaction();
+	public List retrieveTransaction(Long loggedInIdForTransactionHistory);
 	public void addTransaction(Transaction transaction,double walletBalanceOfWallet);
 	
 }
