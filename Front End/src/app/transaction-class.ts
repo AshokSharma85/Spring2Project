@@ -3,6 +3,7 @@ export class TransactionClass {
     sender:number;
     receiver:number;
     amount:number;
-    time:String;
+    date:String;
+    nameOfReceiver:String
 
 }
