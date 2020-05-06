@@ -1,38 +1,55 @@
-<a class="nav-item nav-link  " routerLink="/show/credithistory">Credit History</a>
-
-<a class="nav-item nav-link " routerLink="/show/debithistory">Debit History</a>
-
-
-
-
-<div *ngIf="transactionData.length>0">
-<table class="table table-bordered table-hover col-md-10 ">
-        <thead>
-          
-          <th>Sender</th>
-          <th>Receiver</th>
-          <th>Amount</th>
-          <th>Transaction Id</th>
-          <th>Date</th>
-        </thead>
-        <tbody>
-          <tr *ngFor="let refOfClass of transactionData">
-            <td>{{refOfClass.sender}}</td>
-            <td>{{refOfClass.receiver}}</td>
-            <td>{{refOfClass.amount}}</td>
-            <td>{{refOfClass.transactionId}}</td>
-            <td>{{refOfClass.time}}</td>
-
-          </tr>
-        </tbody>
-    </table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="Header">
+<div  class="text-primary heading">
+  
+    <h1  >Welcome To Ewallet Application </h1>
+  
+  </div> 
+  <button class="btn btn-info" routerLink="/show/credithistory">Credited History</button>
+  
+   <button class="btn btn-info" routerLink="/show/debithistory" >Debited History</button>
+  
+   <button   routerLink="/" class="btn btn-primary">HomePage </button>
+  
+  <br>  <br>  <br><br>
 </div>
-
-<div *ngIf="errorVarForData" class="loading">
-  Opps!! No Transaction History
-  <div class="loading1">Pay Payment to Make Many</div>
-</div>
-
-<div *ngIf="loading" class="loading">
-  Loading ...
-</div> 
+  
+   <div *ngIf="transactionData.length>0">
+    <div class="alltrasnactionsContainer">
+    <div *ngFor="let refOfTransactionData of transactionData">
+         <div class="trasnaction">
+              <div class="trasnaction-left">
+                  <p class="trasnaction-username">&#8377; <br>{{refOfTransactionData.amount}}</p>
+              </div>
+              <div class="trasnaction-content">
+                  <p class="trasnaction-desc">
+                      <span> Sent To : {{refOfTransactionData.receiver}} </span><br>
+                       <span>Transaction Id : {{refOfTransactionData.transactionId}}</span><br> 
+                      <span>Paid On : {{refOfTransactionData.time}}</span><br>
+                     </p>
+             </div> 
+          </div> 
+      </div>
+  
+  </div>
+  </div>
+  
+  <div *ngIf="errorVarForData" class="loading">
+    Opps!! No Transaction History
+    <div class="loading1">Pay Payment to Make Many</div>
+  </div>
+  
+  <div *ngIf="loading" class="loading">
+    Loading ...
+  </div> 
+  
+</body>
+</html>

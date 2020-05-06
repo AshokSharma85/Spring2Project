@@ -20,10 +20,10 @@ import com.cg.exception.WalletServiceException;
 public class WalletServiceImp implements WalletServiceI {
 
 	@Autowired
-	WalletDaoI ObjectOfWalletDaoI;
+	WalletDaoI walletDaoI;
 	
 	@PersistenceContext
-	EntityManager objectOfEntityManager;
+	EntityManager entityManager;
 	
 	/*
 	 * This method will call the DAO class to get the transaction history 
@@ -31,14 +31,14 @@ public class WalletServiceImp implements WalletServiceI {
 	
 	@Override
 	public List retrieveTransaction() {
-		return ObjectOfWalletDaoI.retrieveTransaction();
+		return walletDaoI.retrieveTransaction();
 	}
 
 	
 	@Override
-	public void addTransaction(Transaction refOfTransaction) throws WalletServiceException {
+	public void addTransaction(Transaction transaction) throws WalletServiceException {
 		
-		Query query=objectOfEntityManager.createQuery("select a.walletBalance from Account a where a.userId="+1002);
+		Query query=entityManager.createQuery("select walletBalance from Account  where userId="+1002);
         List list=query.getResultList();
         
         /*
@@ -46,17 +46,22 @@ public class WalletServiceImp implements WalletServiceI {
          * if user is present in database than only it will go further
          */
         
-		if(objectOfEntityManager.find(User.class, 1002)==null)
+		if(entityManager.find(User.class, transaction.getReceiver())==null)
 			{
 			   throw new WalletServiceException("User Id is not valid"); 
 			}
+		
+		else if(1002==transaction.getReceiver())
+		{
+			throw new WalletServiceException("Please Enter Correct Id");
+		}
 		
 		/*
 		 * This condition will check if that much amount is there in user's wallet as much user wants to send
 		 * if not then it will throw the exception 
 		 */
 		
-		else if((double)list.get(0)<refOfTransaction.getAmount()) 
+		else if((double)list.get(0)<transaction.getAmount()) 
 			{
 				throw new WalletServiceException("Insufficient Balance in your wallet to Transfer"); 
 			}
@@ -66,7 +71,7 @@ public class WalletServiceImp implements WalletServiceI {
 		 * if amount is less than zero or zero then it will throw exception
 		 */
 		
-		else if(refOfTransaction.getAmount()<=0)
+		else if(transaction.getAmount()<=0)
 			{
 			throw new WalletServiceException("Amount should be more than Zero"); 
 	
@@ -79,8 +84,8 @@ public class WalletServiceImp implements WalletServiceI {
 		
 		else
 		{
-			double walletBalanceOfAccount=((double)list.get(0))-refOfTransaction.getAmount();
-			ObjectOfWalletDaoI.addTransaction(refOfTransaction, walletBalanceOfAccount);
+			double walletBalanceOfAccount=((double)list.get(0))-transaction.getAmount();
+			walletDaoI.addTransaction(transaction, walletBalanceOfAccount);
 
 		}
 		

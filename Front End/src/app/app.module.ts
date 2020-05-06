@@ -9,6 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ViewCreditedBalanceHistoryComponent } from './view-transaction/view-credited-balance-history/view-credited-balance-history.component';
 import { ViewDebitedBalanceHistoryComponent } from './view-transaction/view-debited-balance-history/view-debited-balance-history.component';
+import { HomeComponentComponent } from './home-component/home-component.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ViewDebitedBalanceHistoryComponent } from './view-transaction/view-debi
     AddTransactionComponent,
     ViewTransactionComponent,
     ViewCreditedBalanceHistoryComponent,
-    ViewDebitedBalanceHistoryComponent
+    ViewDebitedBalanceHistoryComponent,
+    HomeComponentComponent
   ],
   imports: [
     BrowserModule,

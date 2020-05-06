@@ -18,23 +18,24 @@ import com.cg.service.WalletServiceI;
 public class WalletController {
 	
 	@Autowired
-	WalletServiceI objOfWalletServiceI;
+	WalletServiceI walletServiceI;
 	/*
 	 * This method will return the transaction history  of user
 	 */
 	@GetMapping(value="/viewTransactionHistory")
 	public List<Transaction> fetchTransactionDetail()
 	{
-		return objOfWalletServiceI.retrieveTransaction();
+		return walletServiceI.retrieveTransaction();
 	}
 	
 	/*
 	 * This method will add the transaction into transaction table if user enter all correct data
 	 */
 	@PostMapping(value="/addTransaction",consumes= {"application/json"})
-	public void add(@RequestBody Transaction refOfTransaction ) throws WalletServiceException
+	public void add(@RequestBody Transaction transaction ) throws WalletServiceException
 	{
-		objOfWalletServiceI.addTransaction(refOfTransaction);
+		//System.out.println(transaction.toString());
+		walletServiceI.addTransaction(transaction);
 	}
 
 }

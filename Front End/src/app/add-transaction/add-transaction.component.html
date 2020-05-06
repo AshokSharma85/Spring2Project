@@ -1,30 +1,57 @@
-<div class="col-md-6">
-    <h2 class="text-center"></h2>
-  <form  name="formdata" #formdata="ngForm" novalidate (ngSubmit)="addTransaction(formdata)">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
 
-    <div>
-    Send To<input type="number" placeholder="Enter Receiver's Id" id="id" name="id"  [(ngModel)]="objOfTranaction.receiver" #usr="ngModel" required class="form-control" >
-    <div *ngIf="usr.invalid && usr.touched" class="alert alert-danger">
-      <span *ngIf="usr.errors.required">*This is Mandatory</span>
-      </div>
+    <div  class="text-primary heading">
   
-  </div>
-  <br>
-  <div>Amount
-    <input type="number" placeholder="Enter Amount" id="name" name="name"   [(ngModel)]="objOfTranaction.amount" #na="ngModel" required class="form-control" >
-    <div *ngIf="na.invalid && na.touched" class="alert alert-danger">
-      <span *ngIf="na.errors.required">*Amount is Mandatory</span>
+        <h1  >Welcome To Ewallet Application </h1>
+      
+      </div> 
+      
+      
+      <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto  form p-3">
+          <h2 class="text-center" >Enter Details</h2>
+      
+        <form  name="formdata" #formdata="ngForm" novalidate (ngSubmit)="addTransaction(formdata)">
+      
+            <div *ngIf="errorMessageCondition" class="alert alert-danger">
+              {{errorMessage}}
+              </div>
+          <div>
+          Send To<input type="number" placeholder="Enter Receiver's Id" id="id" name="id"  [(ngModel)]="tranaction.receiver" #usr="ngModel" required class="form-control border border-success" >
+          <div *ngIf="usr.invalid && usr.touched" class="alert alert-danger">
+            <span *ngIf="usr.errors.required">*This is Mandatory</span>
+            </div>
+        
+        </div>
+        <br>
+        <div>Amount
+          <input type="number" placeholder="Enter Amount" id="name" name="name"   [(ngModel)]="tranaction.amount" #na="ngModel" required class="form-control border border-success " >
+          <div *ngIf="na.invalid && na.touched" class="alert alert-danger">
+            <span *ngIf="na.errors.required">*Amount is Mandatory</span>
+          
+            </div>
+        
+        </div>
+       
+      <br>
+      
+        <div>
+        <input type="submit" value="Send Money" class="btn btn-success" [disabled]="!formdata.valid">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button  routerLink="/" class="btn btn-primary">HomePage </button>
       </div>
-  
-  </div>
- 
-<br>
-
-  <div>
-  <input type="submit" value="Send Money" class="btn btn-danger" [disabled]="!formdata.valid">
-</div>
-</form>
-   
-</div>
-
-
+      </form>
+         
+      </div>
+      
+      
+        
+</body>
+</html>

@@ -3,3 +3,9 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.heading{
+  background-color: black;
+  padding: 1%;
+  text-align: center;
+}

@@ -1,0 +1,35 @@
+.flex-container {
+    display: flex;
+  }
+
+  .flex-container > div {
+    margin: 2% 2% 2% 4% ;
+    font-size:25px;  
+  }
+
+.heading{
+    background-color: black;
+    padding: 1%;
+    text-align: center;
+}
+
+.logout{
+  height: 90%;
+  width: 90%;
+}
+.addMoney{
+  padding: 15%;
+}
+.transferMoney{
+  height: 95%;
+  width: 95%;
+}
+
+.transactionHistory{
+  height: 80%;
+  width: 80%;
+}
+
+.logoutText{
+  padding: 28%;
+}

@@ -10,27 +10,32 @@ import { NgForm } from '@angular/forms';
 })
 export class AddTransactionComponent implements OnInit {
 
-  constructor( private refOfTransactionService:TransactionServiceService ) { }
+  constructor( private transactionService:TransactionServiceService ) { }
 
-  objOfTranaction:TransactionClass=new TransactionClass();
-
+  tranaction:TransactionClass=new TransactionClass();
+  errorMessage;
+  errorMessageCondition=false;
   ngOnInit(): void {
   }
 
   addTransaction(form :NgForm):void
   {
-  this.refOfTransactionService.createNewTransaction(this.objOfTranaction).subscribe(data=>
+  this.transactionService.createNewTransaction(this.tranaction).subscribe(data=>
   {
     form.resetForm();
-    alert("Transaction Done");
-  
+    this.errorMessageCondition=false;
+    alert("Money Successfully Transferred");
+    
   },
   error=>
   {
     //Json.parse function convert string into object to work with
-    alert(JSON.parse(error.error).message);
+    // alert(JSON.parse(error.error).message);
+    this.errorMessageCondition=true;
+    this.errorMessage=JSON.parse(error.error).message;
     console.log("erroor occured",error);
   }
 );
   }
+
 }
