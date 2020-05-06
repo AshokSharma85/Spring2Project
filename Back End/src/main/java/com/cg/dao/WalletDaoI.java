@@ -10,7 +10,7 @@ public interface WalletDaoI {
 
 	@SuppressWarnings("rawtypes")
 	public List retrieveTransaction();
-	public void addTransaction(Transaction transaction,double walletBalanceOfAccount);
+	public void addTransaction(Transaction transaction,double walletBalanceOfWallet);
 	
 }
 

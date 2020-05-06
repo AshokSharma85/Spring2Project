@@ -13,39 +13,46 @@ import org.springframework.stereotype.Repository;
 public class User {
 
 	@Id
-	private int userid;
+	@Column(name="MOBILE_NUMBER")
+	private Long mobileNumber;
 	
-	@Column
-	private String username;
+	@Column(name="USER_NAME")
+	private String userName;
 	
-	@Column
+	@Column(name="PASSWORD")
 	private String password;
-
-	public User(int userid, String username, String password) {
-		super();
-		this.userid = userid;
-		this.username = username;
-		this.password = password;
-	}
 
 	public User() {
 		super();
 	}
 
-	public int getUserid() {
-		return userid;
+	
+	public User(Long mobileNumber, String userName, String password) {
+		super();
+		this.mobileNumber = mobileNumber;
+		this.userName = userName;
+		this.password = password;
 	}
 
-	public void setUserid(int userid) {
-		this.userid = userid;
+
+	
+
+	public Long getMobileNumber() {
+		return mobileNumber;
 	}
 
-	public String getUsername() {
-		return username;
+
+	public void setMobileNumber(Long mobileNumber) {
+		this.mobileNumber = mobileNumber;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -55,6 +62,8 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	
 	
 	
 }

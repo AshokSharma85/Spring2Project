@@ -21,40 +21,40 @@ public class Transaction {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="transactionIdGenerator")
 	private int transactionId;
 	
-	@Column
-	private int sender;
+	@Column(name="MOBILE_NO_OF_SENDER")
+	private Long sender;
 	
-	@Column
-	private int receiver;
+	@Column(name="MOBILE_NO_OF_RECEIVER")
+	private Long receiver;
 	
-	@Column
+	@Column(name="NAME_OF_RECEIVER")
+	private String nameOfReceiver;
+	
+	@Column(name="AMOUNT")
 	private double amount;
 	
-	@Column
-	private String time;
+	@Column(name="DATE_OF_TRANSACTION")
+	private String date;
+	
 	
 
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name="account_id")
-	private Account ac=new Account();
-	
-	
-
-
+	@JoinColumn(name="WALLET_ID")
+	private Wallet wallet=new Wallet();
 	
 
-
-	public Transaction(int transactionId, int sender, int receiver, double amount, String time, Account ac) {
+	public Transaction(int transactionId, Long sender, Long receiver, String nameOfReceiver, double amount, String date,
+			Wallet wallet) {
 		super();
 		this.transactionId = transactionId;
 		this.sender = sender;
 		this.receiver = receiver;
+		this.nameOfReceiver = nameOfReceiver;
 		this.amount = amount;
-		this.time = time;
-		this.ac = ac;
+		this.date = date;
+		this.wallet = wallet;
 	}
-
 
 
 
@@ -78,36 +78,56 @@ public class Transaction {
 
 
 
-	public String getTime() {
-		return time;
-	}
-
-	public void setTime(String time) {
-		this.time = time;
-	}
-
 
 	
 
-	public int getSender() {
+	public String getNameOfReceiver() {
+		return nameOfReceiver;
+	}
+
+
+
+
+	public void setNameOfReceiver(String nameOfReceiver) {
+		this.nameOfReceiver = nameOfReceiver;
+	}
+
+
+
+
+	public String getDate() {
+		return date;
+	}
+
+
+
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+
+
+
+	public Long getSender() {
 		return sender;
 	}
 
 
 
-	public void setSender(int sender) {
+	public void setSender(Long sender) {
 		this.sender = sender;
 	}
 
 
 
-	public int getReceiver() {
+	public Long getReceiver() {
 		return receiver;
 	}
 
 
 
-	public void setReceiver(int receiver) {
+	public void setReceiver(Long receiver) {
 		this.receiver = receiver;
 	}
 
@@ -125,16 +145,20 @@ public class Transaction {
 
 
 
-	public Account getAc() {
-		return ac;
+
+	public Wallet getWallet() {
+		return wallet;
 	}
 
 
 
-	public void setAc(Account ac) {
-		this.ac = ac;
+
+	public void setWallet(Wallet wallet) {
+		this.wallet = wallet;
 	}
-	
+
+
+
 	
 	
 	
