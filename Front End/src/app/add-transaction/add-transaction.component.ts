@@ -20,11 +20,12 @@ export class AddTransactionComponent implements OnInit {
 
   addTransaction(form :NgForm):void
   {
+    
   this.transactionService.createNewTransaction(this.tranaction).subscribe(data=>
   {
     form.resetForm();
     this.errorMessageCondition=false;
-    alert("Money Successfully Transferred");
+    alert("Money Successfully Transferred"); 
     
   },
   error=>

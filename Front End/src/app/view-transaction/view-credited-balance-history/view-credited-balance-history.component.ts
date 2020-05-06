@@ -16,7 +16,7 @@ export class ViewCreditedBalanceHistoryComponent implements OnInit {
   errorVarForData=false;
   ngOnInit(): void {
     this.transactionService.loadTransaction().subscribe(data=>{
-      this.transactionData=data;
+      this.transactionData=JSON.parse(data);
       this.loading=false
       if(this.transactionData.length==0)
       {
