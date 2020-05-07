@@ -15,9 +15,22 @@ export class ViewDebitedBalanceHistoryComponent implements OnInit {
   loading = true;
   errorVarForData=false;
   ngOnInit(): void {
+    /*
+    *It will load the data form transaction table in database
+    */
     this.transactionService.loadTransaction().subscribe(data=>{
+
       this.transactionData=JSON.parse(data);
+      /*
+      *Till the time response is coming from user server we will show to user
+      *The data is loading  
+      */
+
       this.loading=false
+      /**
+       * If no transaction is there then it will show to user that no transaction 
+       * history is there
+       */
       if(this.transactionData.length==0)
       {
         this.errorVarForData=true;

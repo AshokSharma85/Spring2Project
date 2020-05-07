@@ -5,14 +5,16 @@ import { AddTransactionComponent } from './add-transaction/add-transaction.compo
 import { ViewCreditedBalanceHistoryComponent } from './view-transaction/view-credited-balance-history/view-credited-balance-history.component';
 import { ViewDebitedBalanceHistoryComponent } from './view-transaction/view-debited-balance-history/view-debited-balance-history.component';
 import { HomeComponentComponent } from './home-component/home-component.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
-  {path:'show',component:ViewTransactionComponent},
-  {path:'add',component:AddTransactionComponent},
+  {path:'home/show',component:ViewTransactionComponent},
+  {path:'home/add',component:AddTransactionComponent},
   {path:'show/credithistory',component:ViewCreditedBalanceHistoryComponent},
   {path:'show/debithistory',component:ViewDebitedBalanceHistoryComponent},
-  {path:'',component:HomeComponentComponent}
+  {path:'home',component:HomeComponentComponent},
+  {path:'',component:LoginComponent}
 ];
 
 @NgModule({

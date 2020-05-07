@@ -1,0 +1,40 @@
+
+<div  class="text-primary heading">
+  
+  <h1  >Welcome To Ewallet Application </h1>
+
+</div> 
+<br>
+
+<section class="col-md-4 mx-auto" *ngIf="!editflag">
+    <div class="mt-2 text-center"> <h4>Login</h4></div>
+    <br>
+    <div class="alert alert-danger" *ngIf="errorMsg != undefined" [innerHTML] = "errorMsg"></div>
+  <form  #formdata="ngForm" (ngSubmit)="loginUser(formdata)">
+  
+  <div>Phone number</div>
+  <div ><input type="text" placeholder="Enter the phone number" name="phone" [(ngModel)]="objOfUser.phoneNumber " #ue="ngModel" required class="form-control" ></div>
+  <div style="margin: 7px; padding: 7px; width: 100%;" class="alert alert-danger" *ngIf="ue.invalid && ue.touched" > *Phone number is required</div>
+  <br>   
+  <div>Password</div>
+  <div><input type="password" placeholder="Enter the password" name="pass" [(ngModel)]="objOfUser.password" #up="ngModel" required class="form-control" ></div>
+  <div style="margin: 7px; padding: 7px; width: 100%;" class="alert alert-danger" *ngIf="up.invalid && up.touched" > *Password is required</div>
+  
+  <!-- <div class="text-right">
+    <button class="btn" routerLink="/"> forgot password?</button>
+  </div> -->
+  
+  <div >
+    <input type="submit" value="Login" class="btn btn-success" [disabled]="!formdata.valid">
+  </div>
+  <br>
+  
+  <div class="flex-container" class="text-center">
+    <b> Don't have an account?  </b> 
+    <input type="button" routerLink="/" value="Register" class="btn btn-danger">
+  </div>
+  
+  </form>
+  
+  </section>
+  

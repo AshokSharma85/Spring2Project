@@ -12,25 +12,26 @@ export class ViewCreditedBalanceHistoryComponent implements OnInit {
 
   constructor(private transactionService:TransactionServiceService) { }
   transactionData:TransactionClass[]=[];
-  loading = true;
-  errorVarForData=false;
+  loading = false;
+  errorVarForData=true;
   ngOnInit(): void {
-    this.transactionService.loadTransaction().subscribe(data=>{
-      this.transactionData=JSON.parse(data);
-      this.loading=false
-      if(this.transactionData.length==0)
-      {
-        this.errorVarForData=true;
-      }
-    },
-      error=>
-      {
-        console.log("erroor occured",error);
-        this.errorVarForData=true;
-        this.loading=false;
-      }
-    );
+  //   this.transactionService.loadTransaction().subscribe(data=>{
+  //     this.transactionData=JSON.parse(data);
+  //     this.loading=false
+  //     if(this.transactionData.length==0)
+  //     {
+  //       this.errorVarForData=true;
+  //     }
+  //   },
+  //     error=>
+  //     {
+  //       console.log("erroor occured",error);
+  //       this.errorVarForData=true;
+  //       this.loading=false;
+  //     }
+  //   );
   
-  }
+  // }
 
+}
 }

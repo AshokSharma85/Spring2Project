@@ -20,19 +20,35 @@ export class AddTransactionComponent implements OnInit {
 
   addTransaction(form :NgForm):void
   {
-    
+    /**
+     * The data of form will be given to service through this method
+     */
   this.transactionService.createNewTransaction(this.tranaction).subscribe(data=>
   {
+    /**
+     * This will reset the form after successfully submitted the data
+     */
+
     form.resetForm();
+    /*
+    *The div which shows error will hide after making ngif false
+    */
+
     this.errorMessageCondition=false;
     alert("Money Successfully Transferred"); 
     
   },
   error=>
   {
-    //Json.parse function convert string into object to work with
-    // alert(JSON.parse(error.error).message);
+    
+    /*
+    *The condition of div become true and that div will show respective error
+    */
     this.errorMessageCondition=true;
+
+    /*
+    *Json.parse function convert string into object to work with
+    */
     this.errorMessage=JSON.parse(error.error).message;
     console.log("erroor occured",error);
   }

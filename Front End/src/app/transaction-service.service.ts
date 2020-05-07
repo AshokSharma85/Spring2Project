@@ -14,7 +14,7 @@ export class TransactionServiceService {
   loadTransaction():Observable<any>
   {
     let url="http://localhost:1137/viewTransactionHistory/"+this.loggedInId;
-    
+    console.log("Value is "+this.loggedInId);
     return this.http.get(url,{responseType:'text'});
   }
 

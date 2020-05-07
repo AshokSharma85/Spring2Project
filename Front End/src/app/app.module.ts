@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { ViewCreditedBalanceHistoryComponent } from './view-transaction/view-credited-balance-history/view-credited-balance-history.component';
 import { ViewDebitedBalanceHistoryComponent } from './view-transaction/view-debited-balance-history/view-debited-balance-history.component';
 import { HomeComponentComponent } from './home-component/home-component.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HomeComponentComponent } from './home-component/home-component.componen
     ViewTransactionComponent,
     ViewCreditedBalanceHistoryComponent,
     ViewDebitedBalanceHistoryComponent,
-    HomeComponentComponent
+    HomeComponentComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

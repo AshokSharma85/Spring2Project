@@ -17,7 +17,7 @@
       
        <button class="btn btn-info" routerLink="/show/debithistory" >Debited History</button>
       
-       <button   routerLink="/" class="btn btn-primary">HomePage </button>
+       <button   routerLink="/home" class="btn btn-primary">HomePage </button>
        <br><br><br>
        <br>
        
@@ -49,7 +49,7 @@
       
       <div *ngIf="errorVarForData" class="loading">
         Opps!! No Transaction History
-        <div class="loading1">Pay Payment to Make Many</div>
+        <div class="loading1">Add Money To Make Many</div>
       </div>
       
       <div *ngIf="loading" class="loading">
