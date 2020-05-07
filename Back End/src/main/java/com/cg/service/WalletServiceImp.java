@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.cg.dao.WalletDaoI;
 import com.cg.entity.Transaction;
-import com.cg.entity.Wallet;
+import com.cg.entity.WalletAccount;
 import com.cg.exception.WalletServiceException;
 
 @Transactional
@@ -55,7 +55,7 @@ public class WalletServiceImp implements WalletServiceI {
 	@Override
 	public void addTransaction(Transaction transaction) throws WalletServiceException {
 		
-		Query query=entityManager.createQuery("select walletBalance from Wallet  where walletId="+transaction.getSender());
+		Query query=entityManager.createQuery("select walletBalance from WalletAccount  where walletId="+transaction.getSender());
         List list=query.getResultList();
         
         /**************************************************************************
@@ -63,7 +63,7 @@ public class WalletServiceImp implements WalletServiceI {
          * if user is present in database than only it will go further
          ****************************************************************************/
         
-		if(entityManager.find(Wallet.class,transaction.getReceiver())==null)
+		if(entityManager.find(WalletAccount.class,transaction.getReceiver())==null)
 			{
 			   throw new WalletServiceException("Mobile Number does not exists to transfer"); 
 			}

@@ -85,7 +85,7 @@ public class WalletDaoImp implements WalletDaoI
         * from this query we will update the wallet balance of sender's Id 
         *******************************************************************************************************/
         
-        Query query1=entityManager.createQuery("UPDATE Wallet SET walletBalance =" +walletBalanceOfWallet+"WHERE walletId="+transaction.getSender());
+        Query query1=entityManager.createQuery("UPDATE WalletAccount SET walletBalance =" +walletBalanceOfWallet+"WHERE walletId="+transaction.getSender());
         query1.executeUpdate();
         
         
@@ -94,7 +94,7 @@ public class WalletDaoImp implements WalletDaoI
          * name walletBalanceOfAccountForReceiver
          ******************************************************************************************************************/
         
-        Query query2=entityManager.createQuery("select walletBalance from Wallet where walletId="+transaction.getReceiver());
+        Query query2=entityManager.createQuery("select walletBalance from WalletAccount where walletId="+transaction.getReceiver());
         List list1=query2.getResultList();
         double walletBalanceOfWalletForReceiver=((double)list1.get(0))+transaction.getAmount();
         
@@ -103,10 +103,10 @@ public class WalletDaoImp implements WalletDaoI
          *This query will set the updated balance of receiver's Id in Account table 
          *********************************************************************************************************************/
         
-        Query query3=entityManager.createQuery("UPDATE Wallet  SET walletBalance =" +walletBalanceOfWalletForReceiver+"WHERE walletId="+transaction.getReceiver());
+        Query query3=entityManager.createQuery("UPDATE WalletAccount SET walletBalance =" +walletBalanceOfWalletForReceiver+"WHERE walletId="+transaction.getReceiver());
         query3.executeUpdate();
       
-        Query query4=entityManager.createQuery("select userName from User where mobileNumber="+transaction.getReceiver());
+        Query query4=entityManager.createQuery("select userName from WalletUser where phoneNumber="+transaction.getReceiver());
         List list2=query4.getResultList();
         System.out.println((String)list2.get(0));
         transaction.setNameOfReceiver((String)list2.get(0));

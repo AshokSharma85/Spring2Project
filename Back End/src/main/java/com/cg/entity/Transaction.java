@@ -38,14 +38,14 @@ public class Transaction {
 	
 	
 
-	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="WALLET_ID")
-	private Wallet wallet=new Wallet();
+	@JsonBackReference
+	private WalletAccount walletAccount=new WalletAccount();
 	
 
 	public Transaction(int transactionId, Long sender, Long receiver, String nameOfReceiver, double amount, String date,
-			Wallet wallet) {
+			WalletAccount walletAccount) {
 		super();
 		this.transactionId = transactionId;
 		this.sender = sender;
@@ -53,7 +53,7 @@ public class Transaction {
 		this.nameOfReceiver = nameOfReceiver;
 		this.amount = amount;
 		this.date = date;
-		this.wallet = wallet;
+		this.walletAccount = walletAccount;
 	}
 
 
@@ -146,15 +146,15 @@ public class Transaction {
 
 
 
-	public Wallet getWallet() {
-		return wallet;
+	public WalletAccount getWallet() {
+		return walletAccount;
 	}
 
 
 
 
-	public void setWallet(Wallet wallet) {
-		this.wallet = wallet;
+	public void setWallet(WalletAccount walletAccount) {
+		this.walletAccount = walletAccount;
 	}
 
 

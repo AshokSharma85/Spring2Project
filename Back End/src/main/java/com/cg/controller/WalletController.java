@@ -20,9 +20,10 @@ public class WalletController {
 	
 	@Autowired
 	WalletServiceI walletServiceI;
-	/*
+	/*********************************************************************************
 	 * This method will return the transaction history  of user
-	 */
+	 *********************************************************************************/
+	
 	@SuppressWarnings("unchecked")
 	@GetMapping(value="/viewTransactionHistory/{loggedInId}")
 	public List<Transaction> fetchTransactionDetail(@PathVariable Long loggedInId)
@@ -30,9 +31,10 @@ public class WalletController {
 		return walletServiceI.retrieveTransaction(loggedInId);
 	}
 	
-	/*
+	/*************************************************************************************************
 	 * This method will add the transaction into transaction table if user enter all correct data
-	 */
+	 **************************************************************************************************/
+	
 	@PostMapping(value="/addTransaction",consumes= {"application/json"})
 	public void add(@RequestBody Transaction transaction ) throws WalletServiceException
 	{
